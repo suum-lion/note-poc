@@ -5,6 +5,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "sort-imports.on-save": true,
+  "sort-imports.default-sort-style": "eslint",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.tsdk": "node_modules/typescript/lib"
 }
