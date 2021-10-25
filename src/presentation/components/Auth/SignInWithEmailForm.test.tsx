@@ -10,7 +10,7 @@ const props: ISignInWithEmailFormProps = {
   newAccount: true,
   toggleAccount: () => !props.newAccount,
   inputFormChangeHandler: (e: ChangeEvent<HTMLInputElement>) => console.log(e),
-  signInFormSubmitHandler: (e: FormEvent<HTMLFormElement>) => console.log(e),
+  formSubmitHandler: (e: FormEvent<HTMLFormElement>) => console.log(e),
 }
 
 test('renders Form', () => {

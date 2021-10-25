@@ -7,7 +7,7 @@ export interface ISignInWithEmailFormProps {
   newAccount: boolean
   toggleAccount(): void
   inputFormChangeHandler(event: ChangeEvent<HTMLInputElement>): void
-  signInFormSubmitHandler(event: FormEvent<HTMLFormElement>): void
+  formSubmitHandler(event: FormEvent<HTMLFormElement>): void
 }
 
 const SignInWithEmailForm: FC<ISignInWithEmailFormProps> = ({
@@ -17,11 +17,11 @@ const SignInWithEmailForm: FC<ISignInWithEmailFormProps> = ({
   newAccount,
   toggleAccount,
   inputFormChangeHandler,
-  signInFormSubmitHandler,
+  formSubmitHandler,
 }) => {
   return (
     <>
-      <form onSubmit={signInFormSubmitHandler}>
+      <form onSubmit={formSubmitHandler}>
         <input
           name="email"
           type="email"

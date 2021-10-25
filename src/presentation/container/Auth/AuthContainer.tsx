@@ -27,7 +27,7 @@ const AuthContainer = () => {
     }
   }
 
-  const signInFormSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
+  const formSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
       if (newAccount) {
@@ -62,7 +62,7 @@ const AuthContainer = () => {
         password,
         error,
         inputFormChangeHandler,
-        signInFormSubmitHandler,
+        formSubmitHandler,
         newAccount,
         toggleAccount,
       }}
