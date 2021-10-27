@@ -1,39 +1,40 @@
-import { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { updateProfile } from 'firebase/auth'
+import { FormEvent, useCallback, useState } from 'react'
 
-import ProfileComponent from '../../components/Profile/ProfileComponent'
+import { useAuth } from '../../../infrastructure/AuthContext'
+import ProfileManagement from '../../components/Profile'
 
 const ProfileContainer = () => {
-  const history = useHistory()
-  const [username, setUsername] = useState('')
+  const { user } = useAuth()
+  const [displayName, setDisplayName] = useState(user?.displayName ?? '')
 
-  const onLogOutClick = useCallback(() => {
-    history.push('/')
-  }, [])
-
-  const onChange = useCallback(event => {
+  const inputFormChangeHandler = useCallback(event => {
     const {
       target: { value },
     } = event
-    setUsername(value)
+    setDisplayName(value)
   }, [])
 
-  const onSubmit = useCallback(async event => {
-    event.preventDefault()
-    // if (userObj.username !== username) {
-    //   await userObj.updateProfile({
-    //     username,
-    //   })
-    //   refreshUser()
-    // }
-  }, [])
+  const submitHandler = useCallback(
+    async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+
+      if (user !== null && user.displayName !== displayName) {
+        await updateProfile(user, {
+          displayName,
+        })
+      }
+    },
+    [displayName, user],
+  )
 
   return (
-    <ProfileComponent
-      username={username}
-      onChange={onChange}
-      onSubmit={onSubmit}
-      onLogOutClick={onLogOutClick}
+    <ProfileManagement
+      changeUsernameFormProps={{
+        displayName,
+        inputFormChangeHandler,
+        submitHandler,
+      }}
     />
   )
 }
